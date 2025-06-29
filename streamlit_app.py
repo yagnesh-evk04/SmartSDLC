@@ -11,13 +11,13 @@ from utils import (
 )
 
 
-st.title("🚀 Smart SDLC Pipeline")
+st.title("✨ Smart SDLC ")
 
 project_input = st.text_area("Enter your project description:", height=150)
 
-if st.button("Run SDLC Pipeline"):
+if st.button("Get Response"):
     if project_input.strip():
-        st.info("Running...")
+        st.info("SDLC is here...")
 
         # 1. Requirements
         requirements_raw = ai_requirements_analysis(project_input)
@@ -43,17 +43,17 @@ if st.button("Run SDLC Pipeline"):
             st.write(code)
 
         # 4. Test Results
-        test_result = smart_test_automation()
+        test_result = smart_test_automation(design_raw)
         with st.expander("✅ Testing"):
             st.write(test_result)
 
         # 5. Deployment & Maintenance
-        if "passed" in test_result.lower():
-            with st.expander("🚚 Deployment"):
-                st.success(smart_deployment())
-            with st.expander("🔧 Maintenance"):
-                st.write(predictive_maintenance())
-        else:
-            st.warning("❌ Tests failed. Fix issues before deploying.")
+        test_result_lower = test_result.lower()
+        with st.expander("🚚 Deployment"):
+            st.success(smart_deployment(design_raw))
+        with st.expander("🔧 Maintenance"):
+            st.write(predictive_maintenance(design_raw))
+
+        
     else:
         st.warning("Please enter a project description.")
