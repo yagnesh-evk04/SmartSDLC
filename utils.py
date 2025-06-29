@@ -60,22 +60,34 @@ Include frontend, backend, database, and hosting. Respond in JSON format."""
     return ask_ibm(prompt)
 
 def auto_code_generator(design_str):
-    prompt = f"""You are a smart code generator. Given the following design in JSON format, describe the base starter code it would generate for frontend, backend, database, and APIs. Respond in bullet points or paragraph format."""
+    prompt = f"""You are a smart code generator. Based on this design for a project to help college students manage their daily study schedule, generate a relevant code summary.
+
+Design:
+{design_str}
+
+Respond with relevant code structure and implementation outline only for that use case (not e-commerce)."""
     return ask_ibm(prompt)
 
-def smart_test_automation():
-    prompt = """
-You are an AI test engineer. Write 3 test cases for a login system. 
-Return a result summary at the end with either 'All tests passed' or 'Some tests failed'.
+
+def smart_test_automation(design):
+    prompt = f"""
+You are an AI test engineer. Write 3 test cases for a {design}.
+Return a result summary at the end
+
+"""
+
+    return ask_ibm(prompt)
+
+
+def smart_deployment(design):
+    prompt = f"""
+You are an AI deployment engineer. explain how to deploy for {design}.
+return the result in neat format.
 """
     return ask_ibm(prompt)
 
-
-def smart_deployment():
-    return "Deployed successfully to IBM Cloud."
-
-def predictive_maintenance():
-    prompt = "You are a system maintenance AI. Predict future issues or confirm stability."
+def predictive_maintenance(design):
+    prompt = f"You are a system maintenance AI. Predict future issues or confirm stability for project {design}.return the result in neat format."
     return ask_ibm(prompt)
 
 def extract_json_from_codeblock(text):
